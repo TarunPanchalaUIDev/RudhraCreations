@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
-import { Send, MessageCircle, CheckCircle, Mail, MapPin, AlertCircle } from "lucide-react";
+import { Send, MessageCircle, CheckCircle, Mail, MapPin, AlertCircle, Phone } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/data";
 import type { ContactFormData } from "@/types";
 
@@ -170,6 +170,12 @@ export default function Contact() {
                   label: "WhatsApp",
                   value: COMPANY_INFO.whatsapp,
                   color: "text-green-400",
+                },
+                {
+                  icon: Phone,
+                  label: "Phone",
+                  value: COMPANY_INFO.phone,
+                  color: "text-blue-400",
                 },
                 {
                   icon: Mail,
