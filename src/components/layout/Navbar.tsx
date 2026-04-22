@@ -82,7 +82,7 @@ export default function Navbar() {
             <img
               src={logo}
               alt="Rudra Creations Logo"
-              className={`object-contain transition-all duration-500 hidden sm:block ${scrolled ? "h-12 w-12" : "h-16 w-16"
+              className={`object-contain transition-all duration-500 ${scrolled ? "h-12 w-12" : "h-16 w-16 hidden"
                 } drop-shadow-[0_0_8px_rgba(0,212,232,0.3)]`}
             />
             <div className="hidden sm:block text-left sm:hidden lg:block">
