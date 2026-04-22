@@ -16,29 +16,38 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  // Prevent multiple active tabs: ensure only one is active at a time
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
-
       const sections = NAV_LINKS.map((link) => link.href.substring(1));
-      let found = false;
+      let foundSection = "";
+      
+      // Find the section closest to the top of the viewport
+      let closestDistance = Infinity;
+      
       for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
         const el = document.getElementById(section);
         if (el) {
-          const offsetTop = el.offsetTop - 120;
-          const offsetBottom = offsetTop + el.offsetHeight;
-          if (window.scrollY >= offsetTop && window.scrollY < offsetBottom) {
-            setActiveSection(section);
-            found = true;
-            break;
+          const rect = el.getBoundingClientRect();
+          const offsetTop = rect.top + window.scrollY - 120;
+          
+          // Check if section is in view (within viewport)
+          if (rect.top <= 150 && rect.bottom > 150) {
+            const distance = Math.abs(rect.top - 120);
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              foundSection = section;
+            }
           }
         }
       }
-      // If not found (e.g., scrolled past last section), set last section as active
-      if (!found) {
-        setActiveSection(sections[sections.length - 1]);
+      
+      // Only update if we found a visible section
+      if (foundSection) {
+        setActiveSection(foundSection);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -54,7 +63,6 @@ export default function Navbar() {
       const offset = 80;
       const elementPosition = el.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",

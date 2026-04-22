@@ -122,8 +122,8 @@ export default function UpcomingProjects() {
 
                   <div className="flex items-center justify-between border-b border-white/5 pb-6 mb-6">
                     <div className="flex flex-col gap-1">
-                      <span className="text-[10px] text-cinema-text-muted uppercase tracking-widest">Director</span>
-                      <span className="text-white text-xs font-medium">{movie.director}</span>
+                      <span className="text-[10px] text-cinema-text-muted uppercase tracking-widest">Producer</span>
+                      <span className="text-white text-xs font-medium">Rudra Creations</span>
                     </div>
                     <div className="flex flex-col gap-1 text-right">
                       <span className="text-[10px] text-cinema-text-muted uppercase tracking-widest">Status</span>
