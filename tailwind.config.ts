@@ -18,7 +18,20 @@ export default {
     },
     extend: {
       colors: {
-        // Cinematic color palette
+        // Cinematic color palette — Rudhra Creations brand palette
+        // Key brand colors extracted from logo: cyan teal, gold, crimson, black
+        rudra: {
+          50: "#E0FAFE",
+          100: "#B3F4FC",
+          200: "#80ECF9",
+          300: "#4DE4F6",
+          400: "#26D9F2",
+          500: "#00D4E8",
+          600: "#00AABF",
+          700: "#008099",
+          800: "#005566",
+          900: "#002B33",
+        },
         gold: {
           50: "#FFF9E6",
           100: "#FFF0BF",

@@ -33,11 +33,16 @@ function MovieCard({ movie, onClick }: { movie: Movie; onClick: () => void }) {
         {/* Default overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-14 h-14 border-2 border-gold-500 rounded-full flex items-center justify-center group-hover:bg-gold-500 transition-colors duration-300">
-              <Play size={20} className="text-gold-500 group-hover:text-black transition-colors duration-300" fill="currentColor" />
+        {/* Hover overlay with teal tint */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.75)" }}>
+          {/* Teal radial glow */}
+          <div className="absolute inset-0 opacity-20"
+            style={{ background: "radial-gradient(ellipse at center, #00D4E8 0%, transparent 60%)" }} />
+          <div className="relative flex flex-col items-center gap-3">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300"
+              style={{ border: "2px solid #00D4E8", background: "rgba(0,212,232,0.15)" }}>
+              <Play size={20} className="text-rudra-300" fill="currentColor" />
             </div>
             <span className="font-inter text-white text-xs tracking-widest uppercase">
               Watch Trailer
@@ -47,7 +52,8 @@ function MovieCard({ movie, onClick }: { movie: Movie; onClick: () => void }) {
 
         {/* Genre badge */}
         <div className="absolute top-3 left-3">
-          <span className="bg-black/70 border border-gold-500/30 text-gold-500 text-[9px] font-inter tracking-widest uppercase px-2 py-1">
+          <span className="bg-black/70 border text-[9px] font-inter tracking-widest uppercase px-2 py-1"
+            style={{ borderColor: "rgba(0,212,232,0.4)", color: "#00D4E8" }}>
             {movie.genre.split("/")[0].trim()}
           </span>
         </div>
@@ -61,17 +67,17 @@ function MovieCard({ movie, onClick }: { movie: Movie; onClick: () => void }) {
       </div>
 
       {/* Info below */}
-      <div className="bg-cinema-gray border border-cinema-gray-mid group-hover:border-gold-500/30 transition-colors duration-300 p-4">
+      <div className="bg-cinema-gray border border-cinema-gray-mid group-hover:border-rudra-500/30 transition-colors duration-300 p-4">
         <div className="flex items-start justify-between">
           <div>
-            <h3 className="font-cinzel text-white text-sm font-semibold group-hover:text-gold-400 transition-colors">
+            <h3 className="font-cinzel text-white text-sm font-semibold group-hover:text-rudra-300 transition-colors">
               {movie.title}
             </h3>
             <p className="font-inter text-cinema-text-muted text-xs mt-1">
               {movie.year} · {movie.language}
             </p>
           </div>
-          <span className="font-inter text-[10px] text-crimson-400 tracking-wide uppercase border border-crimson-600/30 px-2 py-0.5 mt-0.5">
+          <span className="font-inter text-[10px] text-gold-400 tracking-wide uppercase border border-gold-500/30 px-2 py-0.5 mt-0.5">
             Released
           </span>
         </div>
@@ -87,9 +93,9 @@ export default function Projects() {
 
   return (
     <section id="films" ref={ref} className="relative py-28 bg-cinema-black overflow-hidden">
-      {/* Background */}
+      {/* Background — teal ambient */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gold-500 blur-[200px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-rudra-500 blur-[200px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -100,7 +106,7 @@ export default function Projects() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="font-inter text-gold-500 text-xs tracking-[0.4em] uppercase mb-4 block">
+          <span className="font-inter text-rudra-400 text-xs tracking-[0.4em] uppercase mb-4 block">
             Our Portfolio
           </span>
           <h2 className="section-heading font-cinzel text-4xl md:text-5xl text-white mb-5">

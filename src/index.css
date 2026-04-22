@@ -64,18 +64,25 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #D4AF37;
+    background: linear-gradient(180deg, #00D4E8, #D4AF37);
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #F5C518;
+    background: linear-gradient(180deg, #26D9F2, #F5C518);
   }
 }
 
 @layer components {
   .gold-text {
     background: linear-gradient(135deg, #D4AF37 0%, #F5C518 30%, #D4AF37 60%, #B8960C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rudra-text {
+    background: linear-gradient(135deg, #00D4E8 0%, #80ECF9 40%, #00D4E8 70%, #00AABF 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -92,7 +99,7 @@
 
   .section-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    background: linear-gradient(90deg, transparent, #00D4E8, #D4AF37, #00D4E8, transparent);
   }
 
   .cinema-card {
@@ -102,8 +109,8 @@
   }
 
   .cinema-card:hover {
-    border-color: rgba(212, 175, 55, 0.5);
-    box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.2);
+    border-color: rgba(0, 212, 232, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 212, 232, 0.12), 0 0 0 1px rgba(0, 212, 232, 0.2), 0 0 30px rgba(212, 175, 55, 0.08);
     transform: translateY(-4px);
   }
 
@@ -185,12 +192,12 @@
     left: 0;
     width: 0;
     height: 1px;
-    background: #D4AF37;
+    background: linear-gradient(90deg, #00D4E8, #D4AF37);
     transition: width 0.3s ease;
   }
 
   .nav-link:hover {
-    color: #D4AF37;
+    color: #00D4E8;
   }
 
   .nav-link:hover::after {
@@ -207,8 +214,8 @@
 
   .input-cinema:focus {
     outline: none;
-    border-color: #D4AF37;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    border-color: #00D4E8;
+    box-shadow: 0 0 15px rgba(0, 212, 232, 0.2);
     background: rgba(26, 26, 26, 0.95);
   }
 

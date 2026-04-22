@@ -9,7 +9,8 @@ export default function MapSection() {
 
   return (
     <section ref={ref} className="relative bg-cinema-darker py-20 overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(0,212,232,0.4), rgba(212,175,55,0.2), transparent)" }} />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
@@ -20,7 +21,7 @@ export default function MapSection() {
           className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-6"
         >
           <div>
-            <span className="font-inter text-gold-500 text-xs tracking-[0.4em] uppercase mb-3 block">
+            <span className="font-inter text-xs tracking-[0.4em] uppercase mb-3 block" style={{ color: "#00D4E8" }}>
               Find Us
             </span>
             <h2 className="section-heading font-cinzel text-3xl md:text-4xl text-white">
@@ -29,11 +30,12 @@ export default function MapSection() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gold-500/10 border border-gold-500/30 flex items-center justify-center">
-              <MapPin size={18} className="text-gold-500" />
+            <div className="w-10 h-10 flex items-center justify-center"
+              style={{ background: "rgba(0,212,232,0.08)", border: "1px solid rgba(0,212,232,0.3)" }}>
+              <MapPin size={18} style={{ color: "#00D4E8" }} />
             </div>
             <div>
-              <p className="font-inter text-white text-sm font-medium">Rudhra Creations</p>
+              <p className="font-inter text-white text-sm font-medium">Rudra Creations</p>
               <p className="font-inter text-cinema-text-muted text-xs">{COMPANY_INFO.location}</p>
             </div>
           </div>
@@ -46,16 +48,21 @@ export default function MapSection() {
           className="relative"
         >
           {/* Map Frame */}
-          <div className="relative border border-gold-500/20 overflow-hidden">
-            {/* Gold corner accents */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold-500 z-10" />
-            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold-500 z-10" />
-            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold-500 z-10" />
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold-500 z-10" />
+          <div className="relative overflow-hidden"
+            style={{ border: "1px solid rgba(0,212,232,0.2)" }}>
+            {/* Teal corner accents */}
+            <div className="absolute top-0 left-0 w-8 h-8 z-10"
+              style={{ borderTop: "2px solid #00D4E8", borderLeft: "2px solid #00D4E8" }} />
+            <div className="absolute top-0 right-0 w-8 h-8 z-10"
+              style={{ borderTop: "2px solid #D4AF37", borderRight: "2px solid #D4AF37" }} />
+            <div className="absolute bottom-0 left-0 w-8 h-8 z-10"
+              style={{ borderBottom: "2px solid #D4AF37", borderLeft: "2px solid #D4AF37" }} />
+            <div className="absolute bottom-0 right-0 w-8 h-8 z-10"
+              style={{ borderBottom: "2px solid #00D4E8", borderRight: "2px solid #00D4E8" }} />
 
             <iframe
               src={COMPANY_INFO.mapEmbedUrl}
-              title="Rudhra Creations Location — Nanakramguda, Hyderabad"
+              title="Rudra Creations Location — Nanakramguda, Hyderabad"
               width="100%"
               height="420"
               style={{ border: 0 }}
@@ -72,7 +79,10 @@ export default function MapSection() {
               href="https://maps.google.com/?q=Nanakramguda,Hyderabad,Telangana,India"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 font-inter text-sm text-gold-500 hover:text-gold-400 transition-colors border border-gold-500/30 hover:border-gold-500 px-5 py-2.5 group"
+              className="flex items-center gap-2 font-inter text-sm transition-colors group px-5 py-2.5"
+              style={{ color: "#00D4E8", border: "1px solid rgba(0,212,232,0.3)" }}
+              onMouseOver={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "#00D4E8"; (e.currentTarget as HTMLAnchorElement).style.background = "rgba(0,212,232,0.05)"; }}
+              onMouseOut={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(0,212,232,0.3)"; (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
             >
               <Navigation size={14} className="group-hover:translate-x-0.5 transition-transform" />
               Get Directions

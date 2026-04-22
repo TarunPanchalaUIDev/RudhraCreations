@@ -50,11 +50,9 @@ export default function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setSubmitting(true);
     setEmailError(null);
-    // console.log("Form submitted:", data);
 
-    // 1) Send email via EmailJS
     if (!EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY.includes("your_public_key_here")) {
-      setEmailError("EmailJS is not fully configured (Public Key missing). Please use 'Send via Email App' or WhatsApp.");
+      setEmailError("EmailJS is not fully configured. Please use 'Send via Email App' or WhatsApp.");
       setSubmitting(false);
       return;
     }
@@ -76,8 +74,6 @@ export default function Contact() {
         EMAILJS_PUBLIC_KEY
       );
 
-      // console.log("EmailJS result:", emailResult);
-
       if (emailResult.status !== 200) {
         throw new Error("Delivery failed");
       }
@@ -88,8 +84,8 @@ export default function Contact() {
       return;
     }
 
-    // 2) Open WhatsApp with pre-filled message
-    const whatsappMsg = `Hello Rudhra Creations,\n\nName: ${data.fullName}\nEmail: ${data.email}\nPhone: ${data.phone || "Not provided"}\n\nMessage:\n${data.message}`;
+    // Open WhatsApp
+    const whatsappMsg = `Hello Rudra Creations,\n\nName: ${data.fullName}\nEmail: ${data.email}\nPhone: ${data.phone || "Not provided"}\n\nMessage:\n${data.message}`;
     const encodedMsg = encodeURIComponent(whatsappMsg);
     const waNumber = COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "");
     const waUrl = `https://wa.me/${waNumber}?text=${encodedMsg}`;
@@ -98,7 +94,6 @@ export default function Contact() {
     setSubmitting(false);
     setSubmitted(true);
     reset();
-
     setTimeout(() => setSubmitted(false), 6000);
   };
 
@@ -111,10 +106,12 @@ export default function Contact() {
       ref={ref}
       className="relative py-28 bg-cinema-black overflow-hidden"
     >
-      {/* Ambient */}
+      {/* Ambient — teal + gold */}
       <div className="absolute inset-0 opacity-6 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-gold-600 blur-[180px]" />
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 rounded-full bg-crimson-700 blur-[120px]" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-[180px]"
+          style={{ background: "#00D4E8" }} />
+        <div className="absolute bottom-0 left-1/4 w-72 h-72 rounded-full blur-[120px]"
+          style={{ background: "#D4AF37" }} />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -125,7 +122,7 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="font-inter text-gold-500 text-xs tracking-[0.4em] uppercase mb-4 block">
+          <span className="font-inter text-xs tracking-[0.4em] uppercase mb-4 block" style={{ color: "#00D4E8" }}>
             Let's Collaborate
           </span>
           <h2 className="section-heading font-cinzel text-4xl md:text-5xl text-white mb-4">
@@ -148,9 +145,9 @@ export default function Contact() {
           >
             <div>
               <h3 className="font-cinzel text-white text-xl font-semibold mb-3">
-                Rudhra Creations
+                Rudra Creations
               </h3>
-              <div className="h-px w-10 bg-gold-500 mb-6" />
+              <div className="h-px w-10 mb-6" style={{ background: "linear-gradient(90deg,#00D4E8,#D4AF37)" }} />
               <p className="font-inter text-cinema-text-muted text-sm leading-relaxed">
                 Based in the heart of Hyderabad's film district — we are always open to new
                 stories, partnerships, and creative collaborations.
@@ -159,28 +156,17 @@ export default function Contact() {
 
             <div className="space-y-4">
               {[
-                {
-                  icon: MapPin,
-                  label: "Location",
-                  value: COMPANY_INFO.location,
-                  color: "text-gold-500",
-                },
-                {
-                  icon: MessageCircle,
-                  label: "WhatsApp",
-                  value: COMPANY_INFO.whatsapp,
-                  color: "text-green-400",
-                },
-                {
-                  icon: Mail,
-                  label: "Email",
-                  value: COMPANY_INFO.email,
-                  color: "text-gold-500",
-                },
-              ].map(({ icon: Icon, label, value, color }) => (
+                { icon: MapPin, label: "Location", value: COMPANY_INFO.location, teal: false },
+                { icon: MessageCircle, label: "WhatsApp", value: COMPANY_INFO.whatsapp, teal: true },
+                { icon: Mail, label: "Email", value: COMPANY_INFO.email, teal: false },
+              ].map(({ icon: Icon, label, value, teal }) => (
                 <div key={label} className="flex items-start gap-4">
                   <div
-                    className={`w-10 h-10 border border-cinema-gray-mid flex items-center justify-center shrink-0 ${color}`}
+                    className="w-10 h-10 flex items-center justify-center shrink-0"
+                    style={{
+                      border: `1px solid ${teal ? "rgba(0,212,232,0.4)" : "rgba(212,175,55,0.3)"}`,
+                      color: teal ? "#00D4E8" : "#D4AF37",
+                    }}
                   >
                     <Icon size={16} />
                   </div>
@@ -197,7 +183,7 @@ export default function Contact() {
             {/* WhatsApp Quick Link */}
             <div className="pt-4 border-t border-white/10">
               <a
-                href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudhra%20Creations%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
+                href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudra%20Creations%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] px-5 py-3 hover:bg-[#25D366]/20 transition-all duration-300 font-inter text-sm tracking-wide"
@@ -215,19 +201,24 @@ export default function Contact() {
             transition={{ delay: 0.3, duration: 0.7 }}
             className="lg:col-span-3"
           >
-            <div className="cinema-card p-8 lg:p-10">
+            <div className="cinema-card p-8 lg:p-10" style={{ borderColor: "rgba(0,212,232,0.15)" }}>
+              {/* Teal top accent */}
+              <div className="h-px mb-6 -mx-8 lg:-mx-10"
+                style={{ background: "linear-gradient(90deg, transparent, #00D4E8, #D4AF37, transparent)" }} />
+
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-16 text-center gap-5"
                 >
-                  <div className="w-16 h-16 border-2 border-gold-500 flex items-center justify-center">
-                    <CheckCircle size={32} className="text-gold-500" />
+                  <div className="w-16 h-16 flex items-center justify-center"
+                    style={{ border: "2px solid #00D4E8" }}>
+                    <CheckCircle size={32} style={{ color: "#00D4E8" }} />
                   </div>
                   <h3 className="font-cinzel text-white text-2xl">Message Sent!</h3>
                   <p className="font-inter text-cinema-text-muted text-sm leading-relaxed max-w-sm">
-                    Your message has been emailed to us and WhatsApp has opened with a pre-filled
+                    Your message has been emailed and WhatsApp has opened with a pre-filled
                     message. We'll get back to you shortly — thank you for reaching out!
                   </p>
                   <button
@@ -239,12 +230,16 @@ export default function Contact() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-                  {/* Email error banner */}
                   {emailError && (
                     <motion.div
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3 bg-crimson-900/30 border border-crimson-600/40 text-crimson-400 px-4 py-3 text-sm font-inter"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-inter"
+                      style={{
+                        background: "rgba(204,0,0,0.1)",
+                        border: "1px solid rgba(204,0,0,0.3)",
+                        color: "#FF6666",
+                      }}
                     >
                       <AlertCircle size={16} className="shrink-0" />
                       {emailError}
@@ -252,57 +247,34 @@ export default function Contact() {
                   )}
 
                   <div className="grid sm:grid-cols-2 gap-5">
-                    {/* Full Name */}
                     <div className="sm:col-span-2">
                       <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
                         Full Name <span className="text-crimson-500">*</span>
                       </label>
-                      <input
-                        {...register("fullName")}
-                        placeholder="Your Full Name"
-                        className={inputClass}
-                      />
+                      <input {...register("fullName")} placeholder="Your Full Name" className={inputClass} />
                       {errors.fullName && (
-                        <p className="font-inter text-crimson-400 text-xs mt-1.5">
-                          {errors.fullName.message}
-                        </p>
+                        <p className="font-inter text-crimson-400 text-xs mt-1.5">{errors.fullName.message}</p>
                       )}
                     </div>
 
-                    {/* Email */}
                     <div>
                       <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
                         Email Address <span className="text-crimson-500">*</span>
                       </label>
-                      <input
-                        {...register("email")}
-                        type="email"
-                        placeholder="your@email.com"
-                        className={inputClass}
-                      />
+                      <input {...register("email")} type="email" placeholder="your@email.com" className={inputClass} />
                       {errors.email && (
-                        <p className="font-inter text-crimson-400 text-xs mt-1.5">
-                          {errors.email.message}
-                        </p>
+                        <p className="font-inter text-crimson-400 text-xs mt-1.5">{errors.email.message}</p>
                       )}
                     </div>
 
-                    {/* Phone */}
                     <div>
                       <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
-                        Phone Number
-                        <span className="text-cinema-text-muted ml-1">(optional)</span>
+                        Phone Number <span className="text-cinema-text-muted ml-1">(optional)</span>
                       </label>
-                      <input
-                        {...register("phone")}
-                        type="tel"
-                        placeholder="+91 XXXXX XXXXX"
-                        className={inputClass}
-                      />
+                      <input {...register("phone")} type="tel" placeholder="+91 XXXXX XXXXX" className={inputClass} />
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div>
                     <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
                       Your Message <span className="text-crimson-500">*</span>
@@ -314,13 +286,10 @@ export default function Contact() {
                       className={`${inputClass} resize-none`}
                     />
                     {errors.message && (
-                      <p className="font-inter text-crimson-400 text-xs mt-1.5">
-                        {errors.message.message}
-                      </p>
+                      <p className="font-inter text-crimson-400 text-xs mt-1.5">{errors.message.message}</p>
                     )}
                   </div>
 
-                  {/* Submit */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
                     <button
                       type="submit"
@@ -342,18 +311,18 @@ export default function Contact() {
 
                     <a
                       href={generateMailtoLink(getValues())}
-                      onMouseEnter={(e) => {
-                        // Update the link just before the user clicks/hovers
-                        (e.currentTarget as HTMLAnchorElement).href = generateMailtoLink(getValues());
-                      }}
-                      className="flex items-center justify-center gap-3 px-6 py-4 border border-gold-500/40 text-gold-500 hover:bg-gold-500/10 transition-all duration-300 font-inter text-sm tracking-wide"
+                      onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).href = generateMailtoLink(getValues()); }}
+                      className="flex items-center justify-center gap-3 px-6 py-4 font-inter text-sm tracking-wide transition-all duration-300"
+                      style={{ border: "1px solid rgba(0,212,232,0.4)", color: "#00D4E8" }}
+                      onMouseOver={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(0,212,232,0.08)"; }}
+                      onMouseOut={e => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
                     >
                       <Mail size={16} />
-                      Send via Email App
+                      Email App
                     </a>
 
                     <a
-                      href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudhra%20Creations`}
+                      href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudra%20Creations`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3 px-6 py-4 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/10 transition-all duration-300 font-inter text-sm tracking-wide flex-1"
@@ -364,7 +333,7 @@ export default function Contact() {
                   </div>
 
                   <p className="font-inter text-[11px] text-cinema-text-muted text-center leading-relaxed">
-                    If instant submission fails, use <strong>Send via Email App</strong> or <strong>WhatsApp</strong>.
+                    If submission fails, use <strong>Email App</strong> or <strong>WhatsApp</strong> to reach us directly.
                   </p>
                 </form>
               )}

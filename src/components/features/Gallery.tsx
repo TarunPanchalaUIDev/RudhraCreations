@@ -31,7 +31,10 @@ function LightboxModal({
           >
             <button
               onClick={onClose}
-              className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center border border-white/20 hover:border-gold-500 text-white hover:text-gold-500 transition-all"
+              className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center text-white transition-all"
+              style={{ border: "1px solid rgba(255,255,255,0.2)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "#00D4E8"; (e.currentTarget as HTMLButtonElement).style.color = "#00D4E8"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; (e.currentTarget as HTMLButtonElement).style.color = "white"; }}
             >
               <X size={18} />
             </button>
@@ -57,8 +60,10 @@ export default function Gallery() {
 
   return (
     <section id="gallery" ref={ref} className="relative py-28 bg-cinema-dark overflow-hidden">
+      {/* Teal ambient */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-gold-500 blur-[120px]" />
+        <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-rudra-500 blur-[120px]" />
+        <div className="absolute top-1/2 right-0 w-60 h-60 rounded-full bg-gold-500 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -69,7 +74,7 @@ export default function Gallery() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="font-inter text-gold-500 text-xs tracking-[0.4em] uppercase mb-4 block">
+          <span className="font-inter text-xs tracking-[0.4em] uppercase mb-4 block" style={{ color: "#00D4E8" }}>
             Behind The Lens
           </span>
           <h2 className="section-heading font-cinzel text-4xl md:text-5xl text-white mb-4">
@@ -106,11 +111,15 @@ export default function Gallery() {
                   }`}
                 />
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 border border-gold-500 flex items-center justify-center">
-                      <ZoomIn size={16} className="text-gold-500" />
+                {/* Hover Overlay — teal tinted */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center"
+                  style={{ background: "rgba(0,20,30,0.75)" }}>
+                  <div className="absolute inset-0 opacity-20"
+                    style={{ background: "radial-gradient(ellipse at center, #00D4E8 0%, transparent 60%)" }} />
+                  <div className="relative flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 flex items-center justify-center"
+                      style={{ border: "1px solid #00D4E8" }}>
+                      <ZoomIn size={16} style={{ color: "#00D4E8" }} />
                     </div>
                     <p className="font-inter text-white text-xs tracking-widest uppercase">
                       View
@@ -123,8 +132,9 @@ export default function Gallery() {
                   <p className="font-inter text-white text-xs tracking-wide">{img.caption}</p>
                 </div>
 
-                {/* Gold border reveal */}
-                <div className="absolute inset-0 border border-gold-500 opacity-0 group-hover:opacity-40 transition-opacity duration-400" />
+                {/* Teal border reveal */}
+                <div className="absolute inset-0 border opacity-0 group-hover:opacity-40 transition-opacity duration-400"
+                  style={{ borderColor: "#00D4E8" }} />
               </div>
             </motion.div>
           ))}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { COMPANY_INFO } from "@/constants/data";
+import logo from "@/assets/logo.png";
 
 const NAV_LINKS = [
   { label: "Home", href: "#hero" },
@@ -36,28 +36,30 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-black/95 backdrop-blur-md border-b border-gold-500/20 py-3"
-            : "bg-transparent py-5"
+            ? "bg-black/97 backdrop-blur-md border-b border-rudra-500/20 py-2"
+            : "bg-transparent py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => handleNavClick("#hero")}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 group"
           >
-            <div className="w-8 h-8 border-2 border-gold-500 flex items-center justify-center relative overflow-hidden group-hover:border-gold-400 transition-colors">
-              <div className="absolute inset-0 bg-gold-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-              <span className="font-cinzel font-bold text-gold-500 text-sm relative z-10 group-hover:text-black transition-colors duration-300">
-                R
+            <img
+              src={logo}
+              alt="Rudra Creations Logo"
+              className={`object-contain transition-all duration-500 ${
+                scrolled ? "h-12 w-12" : "h-16 w-16"
+              }`}
+            />
+            <div className="hidden sm:block">
+              <span className="font-cinzel font-bold text-white text-sm tracking-widest block leading-tight">
+                RUDRA
               </span>
-            </div>
-            <div>
-              <span className="font-cinzel font-bold text-white text-sm tracking-widest">
-                RUDHRA
-              </span>
-              <span className="block font-inter text-gold-500 text-[9px] tracking-[0.3em] uppercase">
-                Creations
+              <span className="font-inter text-[9px] tracking-[0.35em] uppercase"
+                style={{ background: "linear-gradient(90deg,#00D4E8,#D4AF37)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                CREATIONS
               </span>
             </div>
           </button>
@@ -78,7 +80,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <button
             onClick={() => handleNavClick("#contact")}
-            className="hidden md:block gold-btn px-5 py-2 text-xs rounded-none font-cinzel tracking-widest"
+            className="hidden md:flex items-center gap-2 px-5 py-2 text-xs font-cinzel tracking-widest border border-rudra-500/50 text-rudra-400 hover:bg-rudra-500/10 hover:border-rudra-400 transition-all duration-300"
           >
             Get In Touch
           </button>
@@ -86,7 +88,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white hover:text-gold-500 transition-colors p-2"
+            className="md:hidden text-white hover:text-rudra-400 transition-colors p-2"
             aria-label="Toggle menu"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -104,7 +106,8 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed inset-0 z-40 bg-black/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
           >
-            <div className="absolute top-0 left-0 right-0 h-px bg-gold-500/30" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-rudra-500/50 to-transparent" />
+            <img src={logo} alt="Rudra Creations" className="h-24 w-24 object-contain mb-2" />
             {NAV_LINKS.map((link, i) => (
               <motion.button
                 key={link.href}
@@ -112,7 +115,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 }}
                 onClick={() => handleNavClick(link.href)}
-                className="font-cinzel text-2xl tracking-widest text-white hover:text-gold-500 transition-colors uppercase"
+                className="font-cinzel text-2xl tracking-widest text-white hover:text-rudra-400 transition-colors uppercase"
               >
                 {link.label}
               </motion.button>

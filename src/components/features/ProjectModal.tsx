@@ -51,12 +51,20 @@ export default function ProjectModal({ movie, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-cinema-dark border border-gold-500/20 shadow-2xl"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-cinema-dark shadow-2xl"
+            style={{ border: "1px solid rgba(0,212,232,0.25)" }}
           >
+            {/* Top teal accent line */}
+            <div className="absolute top-0 left-0 right-0 h-0.5 z-10"
+              style={{ background: "linear-gradient(90deg, transparent, #00D4E8, #D4AF37, transparent)" }} />
+
             {/* Close */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center border border-white/20 hover:border-gold-500 hover:text-gold-500 text-white transition-all duration-300"
+              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center text-white transition-all duration-300"
+              style={{ border: "1px solid rgba(255,255,255,0.2)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "#00D4E8"; (e.currentTarget as HTMLButtonElement).style.color = "#00D4E8"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; (e.currentTarget as HTMLButtonElement).style.color = "white"; }}
             >
               <X size={18} />
             </button>
@@ -77,7 +85,8 @@ export default function ProjectModal({ movie, onClose }: ProjectModalProps) {
               <div className="md:col-span-3 p-8 flex flex-col gap-5">
                 {/* Badge */}
                 <div className="inline-flex">
-                  <span className="bg-crimson-600/20 border border-crimson-600/40 text-crimson-400 text-[10px] font-inter tracking-widest uppercase px-3 py-1">
+                  <span className="text-[10px] font-inter tracking-widest uppercase px-3 py-1"
+                    style={{ background: "rgba(0,212,232,0.1)", border: "1px solid rgba(0,212,232,0.3)", color: "#00D4E8" }}>
                     {movie.genre}
                   </span>
                 </div>
@@ -85,19 +94,20 @@ export default function ProjectModal({ movie, onClose }: ProjectModalProps) {
                 {/* Title */}
                 <div>
                   <h3 className="font-cinzel text-3xl font-bold text-white mb-1">{movie.title}</h3>
-                  <div className="h-px w-16 bg-gold-500 mt-3" />
+                  <div className="h-px w-16 mt-3"
+                    style={{ background: "linear-gradient(90deg, #00D4E8, #D4AF37)" }} />
                 </div>
 
                 {/* Meta Info */}
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { icon: Calendar, label: "Year", value: movie.year },
-                    { icon: Globe, label: "Language", value: movie.language },
-                    { icon: User, label: "Director", value: movie.director },
-                    { icon: Film, label: "Cast", value: movie.cast },
-                  ].map(({ icon: Icon, label, value }) => (
+                    { icon: Calendar, label: "Year", value: movie.year, teal: true },
+                    { icon: Globe, label: "Language", value: movie.language, teal: false },
+                    { icon: User, label: "Director", value: movie.director, teal: true },
+                    { icon: Film, label: "Cast", value: movie.cast, teal: false },
+                  ].map(({ icon: Icon, label, value, teal }) => (
                     <div key={label} className="flex items-start gap-2.5">
-                      <Icon size={14} className="text-gold-500 mt-0.5 shrink-0" />
+                      <Icon size={14} className={teal ? "text-rudra-400" : "text-gold-500"} style={{ marginTop: "2px", flexShrink: 0 }} />
                       <div>
                         <p className="font-inter text-[10px] text-cinema-text-muted tracking-widest uppercase">
                           {label}
@@ -115,7 +125,8 @@ export default function ProjectModal({ movie, onClose }: ProjectModalProps) {
 
                 {/* YouTube Trailer */}
                 {movie.youtubeId && (
-                  <div className="relative w-full pt-[56.25%] bg-black border border-gold-500/10">
+                  <div className="relative w-full pt-[56.25%] bg-black"
+                    style={{ border: "1px solid rgba(0,212,232,0.15)" }}>
                     <iframe
                       className="absolute inset-0 w-full h-full"
                       src={`https://www.youtube.com/embed/${movie.youtubeId}?rel=0&modestbranding=1`}

@@ -27,8 +27,8 @@ export default function About() {
     <section id="about" ref={ref} className="relative py-28 bg-cinema-dark overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-gold-500 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-crimson-600 blur-[100px]" />
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-rudra-500 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-gold-600 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
@@ -40,11 +40,11 @@ export default function About() {
           animate={inView ? "visible" : "hidden"}
           className="text-center mb-20"
         >
-          <span className="font-inter text-gold-500 text-xs tracking-[0.4em] uppercase mb-4 block">
+          <span className="font-inter text-rudra-400 text-xs tracking-[0.4em] uppercase mb-4 block">
             Our Story
           </span>
           <h2 className="section-heading font-cinzel text-4xl md:text-5xl text-white mb-5">
-            About <span className="gold-text">Rudhra Creations</span>
+            About <span className="gold-text">Rudra Creations</span>
           </h2>
           <div className="section-divider w-24 mx-auto" />
         </motion.div>
@@ -60,23 +60,27 @@ export default function About() {
             className="relative"
           >
             <div className="relative group">
-              {/* Decorative frame */}
-              <div className="absolute -top-4 -left-4 w-full h-full border border-gold-500/30 z-0" />
-              <div className="absolute -bottom-4 -right-4 w-full h-full border border-crimson-600/20 z-0" />
+              {/* Decorative frame — teal + gold */}
+              <div className="absolute -top-4 -left-4 w-full h-full border border-rudra-500/30 z-0" />
+              <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold-500/20 z-0" />
 
               <div className="relative z-10 overflow-hidden">
                 <img
                   src={founderImg}
-                  alt="Deepak — Founder of Rudhra Creations"
+                  alt="Deepak — Founder of Rudra Creations"
                   className="w-full h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                {/* Teal glow on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                  style={{ background: "radial-gradient(ellipse at 50% 80%, #00D4E8 0%, transparent 60%)" }} />
 
                 {/* Founder Label */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="h-px w-12 bg-gold-500 mb-3" />
+                  <div className="h-px w-12 mb-3"
+                    style={{ background: "linear-gradient(90deg,#00D4E8,#D4AF37)" }} />
                   <p className="font-cinzel text-white text-xl font-bold">Deepak</p>
-                  <p className="font-inter text-gold-500 text-xs tracking-widest uppercase">
+                  <p className="font-inter text-rudra-400 text-xs tracking-widest uppercase">
                     Founder & Director
                   </p>
                 </div>
@@ -94,13 +98,13 @@ export default function About() {
             >
               <h3 className="font-playfair text-2xl md:text-3xl text-white mb-5 leading-relaxed">
                 A Production House Born from{" "}
-                <span className="text-gold-500 italic">Passion</span> for Cinema
+                <span className="text-rudra-400 italic">Passion</span> for Cinema
               </h3>
               <p className="font-inter text-cinema-text-muted text-base leading-[1.9] mb-5">
                 Founded by <strong className="text-white">Deepak</strong> in 2018,{" "}
-                <strong className="text-gold-500">Rudhra Creations</strong> emerged from a dream — to
+                <strong className="text-gold-500">Rudra Creations</strong> emerged from a dream — to
                 tell Telugu stories with the grandeur they deserve. Based in the vibrant city of
-                Hyderabad at <span className="text-gold-500">Nanakramguda</span>, we have grown from
+                Hyderabad at <span className="text-rudra-400">Nanakramguda</span>, we have grown from
                 a passionate team of filmmakers into one of Tollywood's most promising production
                 houses.
               </p>
@@ -124,14 +128,14 @@ export default function About() {
                 {
                   title: "Our Vision",
                   text: "To be the benchmark of Telugu cinematic excellence — producing films that compete on the world stage while staying rooted in our culture.",
-                  color: "border-gold-500",
-                  accent: "text-gold-500",
+                  color: "border-rudra-500",
+                  accent: "text-rudra-400",
                 },
                 {
                   title: "Our Mission",
                   text: "To nurture authentic stories, empower creative talent, and deliver cinematic experiences that resonate with every Telugu heart.",
-                  color: "border-crimson-600",
-                  accent: "text-crimson-500",
+                  color: "border-gold-500",
+                  accent: "text-gold-500",
                 },
               ].map((item) => (
                 <div
@@ -158,13 +162,17 @@ export default function About() {
           animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
         >
-          {STATS.map(({ icon: Icon, value, label }) => (
+          {STATS.map(({ icon: Icon, value, label }, i) => (
             <div
               key={label}
               className="cinema-card p-8 text-center group cursor-default"
             >
-              <div className="w-12 h-12 border border-gold-500/30 flex items-center justify-center mx-auto mb-5 group-hover:border-gold-500 transition-colors duration-300">
-                <Icon size={22} className="text-gold-500" />
+              <div className={`w-12 h-12 border flex items-center justify-center mx-auto mb-5 transition-all duration-300 ${
+                i % 2 === 0
+                  ? "border-rudra-500/30 group-hover:border-rudra-500 group-hover:bg-rudra-500/5"
+                  : "border-gold-500/30 group-hover:border-gold-500 group-hover:bg-gold-500/5"
+              }`}>
+                <Icon size={22} className={i % 2 === 0 ? "text-rudra-400" : "text-gold-500"} />
               </div>
               <p className="font-cinzel text-4xl font-black gold-text mb-2">{value}</p>
               <p className="font-inter text-cinema-text-muted text-xs tracking-widest uppercase">

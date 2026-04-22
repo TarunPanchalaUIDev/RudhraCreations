@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Instagram, Youtube, Heart, ChevronUp } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/data";
+import logo from "@/assets/logo.png";
 
 const FOOTER_LINKS = [
   { label: "Home", href: "#hero" },
@@ -18,27 +19,37 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-cinema-darker border-t border-gold-500/15 overflow-hidden">
-      {/* Decorative */}
-      <div className="absolute inset-0 opacity-4 pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 rounded-full bg-gold-500 blur-[120px]" />
+    <footer className="relative bg-cinema-darker overflow-hidden">
+      {/* Top teal-gold divider */}
+      <div className="h-px bg-gradient-to-r from-transparent via-rudra-500/60 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent mt-px" />
+
+      {/* Ambient glow */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute bottom-0 left-1/4 w-[400px] h-48 rounded-full bg-rudra-500 blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-[300px] h-32 rounded-full bg-gold-500 blur-[80px]" />
       </div>
 
       {/* Main footer */}
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-6 pt-14 pb-8">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 border-2 border-gold-500 flex items-center justify-center">
-                <span className="font-cinzel font-black text-gold-500 text-lg">R</span>
-              </div>
+              <img src={logo} alt="Rudra Creations" className="h-20 w-20 object-contain" />
               <div>
                 <span className="font-cinzel font-bold text-white text-base tracking-widest block">
-                  RUDHRA
+                  RUDRA
                 </span>
-                <span className="font-inter text-gold-500 text-[9px] tracking-[0.35em] uppercase">
-                  Creations
+                <span
+                  className="font-inter text-[9px] tracking-[0.35em] uppercase"
+                  style={{
+                    background: "linear-gradient(90deg,#00D4E8,#D4AF37)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  CREATIONS
                 </span>
               </div>
             </div>
@@ -53,7 +64,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="font-cinzel text-white text-xs tracking-[0.3em] uppercase mb-6">
+            <h4 className="font-cinzel text-rudra-400 text-xs tracking-[0.3em] uppercase mb-6">
               Navigation
             </h4>
             <div className="grid grid-cols-2 gap-y-3">
@@ -61,7 +72,7 @@ export default function Footer() {
                 <button
                   key={link.href}
                   onClick={() => navTo(link.href)}
-                  className="font-inter text-cinema-text-muted text-sm hover:text-gold-500 transition-colors text-left"
+                  className="font-inter text-cinema-text-muted text-sm hover:text-rudra-400 transition-colors text-left"
                 >
                   {link.label}
                 </button>
@@ -71,7 +82,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-cinzel text-white text-xs tracking-[0.3em] uppercase mb-6">
+            <h4 className="font-cinzel text-rudra-400 text-xs tracking-[0.3em] uppercase mb-6">
               Connect With Us
             </h4>
             <div className="flex gap-4 mb-6">
@@ -79,7 +90,7 @@ export default function Footer() {
                 href={COMPANY_INFO.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 border border-cinema-gray-mid hover:border-gold-500 flex items-center justify-center text-cinema-text-muted hover:text-gold-500 transition-all duration-300 hover:bg-gold-500/5"
+                className="w-11 h-11 border border-cinema-gray-mid hover:border-rudra-500 flex items-center justify-center text-cinema-text-muted hover:text-rudra-400 transition-all duration-300 hover:bg-rudra-500/10"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
@@ -108,7 +119,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-inter text-cinema-text-muted text-xs tracking-wide text-center sm:text-left">
-            © {new Date().getFullYear()} Rudhra Creations. All Rights Reserved. Founded by{" "}
+            © {new Date().getFullYear()} Rudra Creations. All Rights Reserved. Founded by{" "}
             <span className="text-gold-500">Deepak</span>.
           </p>
 
@@ -121,7 +132,7 @@ export default function Footer() {
           <motion.button
             onClick={scrollToTop}
             whileHover={{ y: -3 }}
-            className="w-10 h-10 border border-gold-500/30 hover:border-gold-500 flex items-center justify-center text-cinema-text-muted hover:text-gold-500 transition-all duration-300"
+            className="w-10 h-10 border border-rudra-500/30 hover:border-rudra-500 flex items-center justify-center text-cinema-text-muted hover:text-rudra-400 transition-all duration-300"
             aria-label="Scroll to top"
           >
             <ChevronUp size={16} />
