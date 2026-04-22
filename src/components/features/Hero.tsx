@@ -123,9 +123,8 @@ export default function Hero() {
           <button
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={`transition-all duration-300 ${
-              i === currentSlide ? "scale-150" : ""
-            }`}
+            className={`transition-all duration-300 ${i === currentSlide ? "scale-150" : ""
+              }`}
             style={{
               width: i === currentSlide ? 8 : 6,
               height: i === currentSlide ? 8 : 6,
@@ -160,7 +159,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-            className="flex justify-center lg:justify-start mb-4"
+            className="flex justify-center mb-4 lg:hidden"
           >
             <img
               src={logo}

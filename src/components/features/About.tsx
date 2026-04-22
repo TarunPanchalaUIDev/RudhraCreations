@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, Film, Users, Star } from "lucide-react";
 import founderImg from "@/assets/founder.jpg";
+import gautamImg from "@/assets/gautam.jpeg";
 
 const STATS = [
   { icon: Film, value: "6+", label: "Films Produced" },
@@ -66,7 +67,7 @@ export default function About() {
 
               <div className="relative z-10 overflow-hidden">
                 <img
-                  src={founderImg}
+                  src={gautamImg}
                   alt="T Gautam Leela Varma — Founder of Rudra Creations"
                   className="w-full h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -167,11 +168,10 @@ export default function About() {
               key={label}
               className="cinema-card p-8 text-center group cursor-default"
             >
-              <div className={`w-12 h-12 border flex items-center justify-center mx-auto mb-5 transition-all duration-300 ${
-                i % 2 === 0
-                  ? "border-rudra-500/30 group-hover:border-rudra-500 group-hover:bg-rudra-500/5"
-                  : "border-gold-500/30 group-hover:border-gold-500 group-hover:bg-gold-500/5"
-              }`}>
+              <div className={`w-12 h-12 border flex items-center justify-center mx-auto mb-5 transition-all duration-300 ${i % 2 === 0
+                ? "border-rudra-500/30 group-hover:border-rudra-500 group-hover:bg-rudra-500/5"
+                : "border-gold-500/30 group-hover:border-gold-500 group-hover:bg-gold-500/5"
+                }`}>
                 <Icon size={22} className={i % 2 === 0 ? "text-rudra-400" : "text-gold-500"} />
               </div>
               <p className="font-cinzel text-4xl font-black gold-text mb-2">{value}</p>

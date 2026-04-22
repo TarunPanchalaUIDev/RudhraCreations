@@ -5,9 +5,10 @@ export const COMPANY_INFO = {
   tagline: "Crafting Stories that Inspire",
   founder: "T Gautam Leela Varma",
   location: "Manikonda, Hyderabad, Telangana, India",
-  whatsapp: "+916301808194",
+  whatsapp: "+91 7995177703",
+  phone: "+91 7995177703",
   email: "manachiralainfo@gmail.com",
-  instagram: "https://instagram.com/rudhracreations",
+  instagram: "https://www.instagram.com/varma_gowtham/",
   youtube: "https://youtube.com/@rudhracreations",
   founded: "2018",
   mapEmbedUrl:

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
-import { Send, MessageCircle, CheckCircle, Mail, MapPin, AlertCircle } from "lucide-react";
+import { Send, MessageCircle, CheckCircle, Mail, MapPin, AlertCircle, Phone } from "lucide-react";
 import { COMPANY_INFO } from "@/constants/data";
 import type { ContactFormData } from "@/types";
 
@@ -98,242 +98,226 @@ export default function Contact() {
   };
 
   const inputClass =
-    "input-cinema w-full px-4 py-3.5 rounded-none text-sm font-inter transition-all duration-300";
+    "w-full bg-cinema-gray/50 border border-white/5 px-4 py-4 rounded-sm text-sm font-inter text-white placeholder:text-white/20 focus:outline-none focus:border-rudra-500/50 focus:bg-cinema-gray/80 transition-all duration-300";
 
   return (
     <section
       id="contact"
       ref={ref}
-      className="relative py-28 bg-cinema-black overflow-hidden"
+      className="relative py-32 bg-cinema-black overflow-hidden"
     >
-      {/* Ambient — teal + gold */}
-      <div className="absolute inset-0 opacity-6 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-[180px]"
-          style={{ background: "#00D4E8" }} />
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 rounded-full blur-[120px]"
-          style={{ background: "#D4AF37" }} />
+      {/* Cinematic Background Elements */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] rounded-full bg-rudra-700/20 blur-[150px]" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-gold-700/10 blur-[150px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-24"
         >
-          <span className="font-inter text-xs tracking-[0.4em] uppercase mb-4 block" style={{ color: "#00D4E8" }}>
-            Let's Collaborate
-          </span>
-          <h2 className="section-heading font-cinzel text-4xl md:text-5xl text-white mb-4">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-[1px] w-12 bg-rudra-500/30" />
+            <span className="font-inter text-[11px] tracking-[0.6em] uppercase text-rudra-400 font-bold">
+              Connect With Us
+            </span>
+            <div className="h-[1px] w-12 bg-rudra-500/30" />
+          </div>
+          <h2 className="font-sora text-4xl md:text-5xl lg:text-7xl text-white font-bold mb-8 tracking-tighter">
             Get In <span className="gold-text">Touch</span>
           </h2>
-          <p className="font-inter text-cinema-text-muted text-base max-w-xl mx-auto leading-relaxed mt-4">
-            Have a story worth telling? A project to propose? A dream to produce? We'd love to
-            hear from you.
+          <p className="font-inter text-cinema-text-muted text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Every great collaboration begins with a conversation. Reach out to discuss your next cinematic masterpiece.
           </p>
-          <div className="section-divider w-24 mx-auto mt-6" />
+          <div className="section-divider w-40 mx-auto mt-10 opacity-30" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-10">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+          {/* Contact Details */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="lg:col-span-2 space-y-6"
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="lg:col-span-4 lg:sticky lg:top-32"
           >
-            <div>
-              <h3 className="font-cinzel text-white text-xl font-semibold mb-3">
-                Rudra Creations
-              </h3>
-              <div className="h-px w-10 mb-6" style={{ background: "linear-gradient(90deg,#00D4E8,#D4AF37)" }} />
-              <p className="font-inter text-cinema-text-muted text-sm leading-relaxed">
-                Based in the heart of Hyderabad's film district — we are always open to new
-                stories, partnerships, and creative collaborations.
-              </p>
-            </div>
+            <div className="space-y-12">
+              <div>
+                <h3 className="font-sora text-2xl text-white font-bold mb-4">Rudra Creations</h3>
+                <div className="h-[2px] w-12 bg-gradient-to-r from-rudra-500 to-gold-500 mb-8" />
+                <p className="font-inter text-cinema-text-muted text-sm leading-relaxed mb-10 opacity-80">
+                  Headquartered in Hyderabad's vibrant film district. We are dedicated to pioneering stories that resonate across boundaries.
+                </p>
+              </div>
 
-            <div className="space-y-4">
-              {[
-                { icon: MapPin, label: "Location", value: COMPANY_INFO.location, teal: false },
-                { icon: MessageCircle, label: "WhatsApp", value: COMPANY_INFO.whatsapp, teal: true },
-                { icon: Mail, label: "Email", value: COMPANY_INFO.email, teal: false },
-              ].map(({ icon: Icon, label, value, teal }) => (
-                <div key={label} className="flex items-start gap-4">
-                  <div
-                    className="w-10 h-10 flex items-center justify-center shrink-0"
-                    style={{
-                      border: `1px solid ${teal ? "rgba(0,212,232,0.4)" : "rgba(212,175,55,0.3)"}`,
-                      color: teal ? "#00D4E8" : "#D4AF37",
-                    }}
-                  >
-                    <Icon size={16} />
+              <div className="space-y-8">
+                {[
+                  { icon: MapPin, label: "Studio Location", value: COMPANY_INFO.location, color: "text-rudra-400" },
+                  { icon: MessageCircle, label: "Business WhatsApp", value: COMPANY_INFO.whatsapp, color: "text-[#25D366]" },
+                  { icon: Mail, label: "Official Email", value: COMPANY_INFO.email, color: "text-gold-400" },
+                ].map(({ icon: Icon, label, value, color }) => (
+                  <div key={label} className="flex items-start gap-6 group">
+                    <div className="w-12 h-12 flex items-center justify-center shrink-0 bg-white/5 border border-white/10 group-hover:border-rudra-500/50 transition-all duration-500 rounded-sm">
+                      <Icon size={20} className={color} />
+                    </div>
+                    <div>
+                      <p className="font-inter text-[10px] text-cinema-text-muted tracking-[0.2em] uppercase mb-1.5 opacity-60">
+                        {label}
+                      </p>
+                      <p className="font-inter text-white text-sm font-medium tracking-wide">{value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-inter text-[10px] text-cinema-text-muted tracking-widest uppercase mb-1">
-                      {label}
-                    </p>
-                    <p className="font-inter text-white text-sm">{value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* WhatsApp Quick Link */}
-            <div className="pt-4 border-t border-white/10">
-              <a
-                href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudra%20Creations%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] px-5 py-3 hover:bg-[#25D366]/20 transition-all duration-300 font-inter text-sm tracking-wide"
-              >
-                <MessageCircle size={18} />
-                Chat on WhatsApp
-              </a>
+              {/* Instant WhatsApp Link */}
+              <div className="pt-10 border-t border-white/10">
+                <a
+                  href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudra%20Creations%2C%20I%20would%20like%20to%20discuss%20a%20project.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-4 bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] px-6 py-4 hover:bg-[#25D366]/20 transition-all duration-300 font-inter text-[13px] tracking-widest uppercase font-bold rounded-sm shadow-[0_10px_30px_rgba(37,211,102,0.1)] group"
+                >
+                  <MessageCircle size={20} className="transition-transform group-hover:scale-110" />
+                  Quick Chat
+                </a>
+              </div>
             </div>
           </motion.div>
 
-          {/* Form */}
+          {/* Form Container */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="lg:col-span-3"
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="lg:col-span-8"
           >
-            <div className="cinema-card p-8 lg:p-10" style={{ borderColor: "rgba(0,212,232,0.15)" }}>
-              {/* Teal top accent */}
-              <div className="h-px mb-6 -mx-8 lg:-mx-10"
-                style={{ background: "linear-gradient(90deg, transparent, #00D4E8, #D4AF37, transparent)" }} />
-
+            <div className="bg-cinema-gray/30 border border-white/5 p-8 md:p-12 shadow-2xl relative overflow-hidden group">
+              {/* Subtle top gradient */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-rudra-500/50 to-transparent" />
+              
               {submitted ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-16 text-center gap-5"
+                  className="flex flex-col items-center justify-center py-16 text-center gap-6"
                 >
-                  <div className="w-16 h-16 flex items-center justify-center"
-                    style={{ border: "2px solid #00D4E8" }}>
-                    <CheckCircle size={32} style={{ color: "#00D4E8" }} />
+                  <div className="w-20 h-20 flex items-center justify-center bg-rudra-500/10 border border-rudra-500/30 rounded-full mb-4">
+                    <CheckCircle size={40} className="text-rudra-400" />
                   </div>
-                  <h3 className="font-cinzel text-white text-2xl">Message Sent!</h3>
-                  <p className="font-inter text-cinema-text-muted text-sm leading-relaxed max-w-sm">
-                    Your message has been emailed and WhatsApp has opened with a pre-filled
-                    message. We'll get back to you shortly — thank you for reaching out!
+                  <h3 className="font-sora text-3xl text-white font-bold">Message Received</h3>
+                  <p className="font-inter text-cinema-text-muted text-base leading-relaxed max-w-sm opacity-80">
+                    We've received your inquiry. A member of our production team will contact you within 24 hours.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="gold-btn px-6 py-2.5 text-xs font-cinzel tracking-widest mt-2"
+                    className="gold-btn px-10 py-3.5 text-[11px] font-sora tracking-[0.2em] uppercase mt-4"
                   >
                     Send Another
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8" noValidate>
                   {emailError && (
                     <motion.div
-                      initial={{ opacity: 0, y: -8 }}
+                      initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-3 px-4 py-3 text-sm font-inter"
-                      style={{
-                        background: "rgba(204,0,0,0.1)",
-                        border: "1px solid rgba(204,0,0,0.3)",
-                        color: "#FF6666",
-                      }}
+                      className="flex items-center gap-4 px-6 py-4 bg-red-950/20 border border-red-500/30 text-red-400 text-sm font-inter rounded-sm"
                     >
-                      <AlertCircle size={16} className="shrink-0" />
+                      <AlertCircle size={20} className="shrink-0" />
                       {emailError}
                     </motion.div>
                   )}
 
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div className="sm:col-span-2">
-                      <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
-                        Full Name <span className="text-crimson-500">*</span>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="md:col-span-2">
+                       <label className="font-inter text-[11px] tracking-[0.2em] text-white/60 uppercase font-bold block mb-3">
+                        Full Name <span className="text-rudra-500">*</span>
                       </label>
-                      <input {...register("fullName")} placeholder="Your Full Name" className={inputClass} />
+                      <input {...register("fullName")} placeholder="T Gautam Leela Varma" className={inputClass} />
                       {errors.fullName && (
-                        <p className="font-inter text-crimson-400 text-xs mt-1.5">{errors.fullName.message}</p>
+                        <p className="font-inter text-red-500 text-[11px] mt-2 font-medium tracking-wide uppercase">{errors.fullName.message}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
-                        Email Address <span className="text-crimson-500">*</span>
+                      <label className="font-inter text-[11px] tracking-[0.2em] text-white/60 uppercase font-bold block mb-3">
+                        Email Address <span className="text-rudra-500">*</span>
                       </label>
-                      <input {...register("email")} type="email" placeholder="your@email.com" className={inputClass} />
+                      <input {...register("email")} type="email" placeholder="official@rudra.com" className={inputClass} />
                       {errors.email && (
-                        <p className="font-inter text-crimson-400 text-xs mt-1.5">{errors.email.message}</p>
+                        <p className="font-inter text-red-500 text-[11px] mt-2 font-medium tracking-wide uppercase">{errors.email.message}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
-                        Phone Number <span className="text-cinema-text-muted ml-1">(optional)</span>
+                      <label className="font-inter text-[11px] tracking-[0.2em] text-white/60 uppercase font-bold block mb-3">
+                        Phone Number
                       </label>
-                      <input {...register("phone")} type="tel" placeholder="+91 XXXXX XXXXX" className={inputClass} />
+                      <input {...register("phone")} type="tel" placeholder="+91 XXXX XXX XXX" className={inputClass} />
                     </div>
                   </div>
 
                   <div>
-                    <label className="font-inter text-[10px] tracking-widest text-cinema-text-muted uppercase block mb-2">
-                      Your Message <span className="text-crimson-500">*</span>
+                    <label className="font-inter text-[11px] tracking-[0.2em] text-white/60 uppercase font-bold block mb-3">
+                      Project Details <span className="text-rudra-500">*</span>
                     </label>
                     <textarea
                       {...register("message")}
-                      rows={5}
-                      placeholder="Tell us about your project, idea, or inquiry..."
+                      rows={6}
+                      placeholder="Share your vision or proposal with us..."
                       className={`${inputClass} resize-none`}
                     />
                     {errors.message && (
-                      <p className="font-inter text-crimson-400 text-xs mt-1.5">{errors.message.message}</p>
+                      <p className="font-inter text-red-500 text-[11px] mt-2 font-medium tracking-wide uppercase">{errors.message.message}</p>
                     )}
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="gold-btn flex items-center justify-center gap-3 px-8 py-4 font-cinzel text-sm tracking-widest flex-1 disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="gold-btn flex items-center justify-center gap-4 px-10 py-5 font-sora text-[13px] font-bold tracking-[0.2em] uppercase flex-1 w-full disabled:opacity-60 transition-all group shadow-[0_15px_30px_rgba(212,175,55,0.15)] hover:shadow-gold-500/30"
                     >
                       {submitting ? (
                         <>
-                          <div className="w-4 h-4 border-2 border-black/40 border-t-black rounded-full animate-spin" />
-                          Sending...
+                          <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                          Processing...
                         </>
                       ) : (
                         <>
-                          <Send size={16} />
-                          Send Message
+                          <Send size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                          Submit Inquiry
                         </>
                       )}
                     </button>
 
-                    <a
-                      href={generateMailtoLink(getValues())}
-                      onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).href = generateMailtoLink(getValues()); }}
-                      className="flex items-center justify-center gap-3 px-6 py-4 font-inter text-sm tracking-wide transition-all duration-300"
-                      style={{ border: "1px solid rgba(0,212,232,0.4)", color: "#00D4E8" }}
-                      onMouseOver={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(0,212,232,0.08)"; }}
-                      onMouseOut={e => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; }}
-                    >
-                      <Mail size={16} />
-                      Email App
-                    </a>
-
-                    <a
-                      href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudra%20Creations`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 px-6 py-4 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/10 transition-all duration-300 font-inter text-sm tracking-wide flex-1"
-                    >
-                      <MessageCircle size={16} />
-                      WhatsApp
-                    </a>
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
+                       <a
+                        href={generateMailtoLink(getValues())}
+                        onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).href = generateMailtoLink(getValues()); }}
+                        className="flex items-center justify-center gap-3 px-6 py-5 border border-white/10 text-white/60 hover:text-rudra-400 hover:border-rudra-500/50 hover:bg-white/5 transition-all duration-300 font-inter text-[11px] tracking-widest uppercase font-bold flex-1 sm:flex-initial"
+                      >
+                        <Mail size={16} />
+                        Email
+                      </a>
+                      
+                      <a
+                        href={`https://wa.me/${COMPANY_INFO.whatsapp.replace(/[^0-9]/g, "")}?text=Hello%20Rudra%20Creations`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-3 px-6 py-5 border border-white/10 text-white/60 hover:text-[#25D366] hover:border-[#25D366]/50 hover:bg-white/5 transition-all duration-300 font-inter text-[11px] tracking-widest uppercase font-bold flex-1 sm:flex-initial"
+                      >
+                        <MessageCircle size={16} />
+                        WhatsApp
+                      </a>
+                    </div>
                   </div>
 
-                  <p className="font-inter text-[11px] text-cinema-text-muted text-center leading-relaxed">
-                    If submission fails, use <strong>Email App</strong> or <strong>WhatsApp</strong> to reach us directly.
+                  <p className="font-inter text-[10px] text-cinema-text-muted text-center tracking-[0.1em] opacity-40">
+                    By submitting, you agree to our terms of cinematic collaboration.
                   </p>
                 </form>
               )}

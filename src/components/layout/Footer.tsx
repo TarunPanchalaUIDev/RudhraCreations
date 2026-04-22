@@ -58,7 +58,7 @@ export default function Footer() {
             </p>
             <p className="font-inter text-cinema-text-muted text-xs leading-relaxed">
               A premier Telugu film production house based in Nanakramguda, Hyderabad. Founded by
-              Deepak with a vision to elevate Telugu cinema on the world stage.
+              T Gautam Leela Varma with a vision to elevate Telugu cinema on the world stage.
             </p>
           </div>
 
@@ -120,7 +120,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-inter text-cinema-text-muted text-xs tracking-wide text-center sm:text-left">
             © {new Date().getFullYear()} Rudra Creations. All Rights Reserved. Founded by{" "}
-            <span className="text-gold-500">Deepak</span>.
+            <span className="text-gold-500">T Gautam Leela Varma</span>.
           </p>
 
           <div className="flex items-center gap-1 font-inter text-cinema-text-muted text-xs">

@@ -101,6 +101,7 @@ export default {
         },
       },
       fontFamily: {
+        sora: ["Sora", "sans-serif"],
         cinzel: ["Cinzel", "serif"],
         playfair: ["Playfair Display", "serif"],
         inter: ["Inter", "sans-serif"],
